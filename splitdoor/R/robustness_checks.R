@@ -1,3 +1,14 @@
+#' Check the variation of causal estimate as the threshold for independence used by split-door criterion is varied.
+#'
+#' @param tseries_df 
+#' @param independence_thresholds 
+#' @param do_plot 
+#' @param .. 
+#'
+#' @return A data.frame containing average causal estimates with different user-provided values of the independence threshold.
+#' @export
+#'
+#' @examples
 check_robustness_independence_threshold <- function(tseries_df, 
                                                     independence_thresholds=c(0.001, 0.005, 0.01, 0.05, 0.10, 0.15, 0.20),
                                                     do_plot=TRUE,

@@ -1,4 +1,17 @@
 
+#' Estimate causal effect of (multiple) treatment variables on outcome variables, given data for their timeseries.
+#'
+#' @param tseries_df 
+#' @param fn_add_time_period_factor 
+#' @param fn_independence_test 
+#' @param test_time_period 
+#' @param num_discrete_levels 
+#' @param independence_threshold 
+#'
+#' @return A data.frame containing causal estimates for each pair of (treatment, outcome) variables.
+#' @export
+#'
+#' @examples
 splitdoor_causal_estimate <- function(tseries_df, 
                                       fn_add_time_period_factor=assign_time_periods,
                                       fn_independence_test=fisher_independence_test,
@@ -13,10 +26,6 @@ splitdoor_causal_estimate <- function(tseries_df,
   aug_tseries_tbl = fn_add_time_period_factor(tseries_tbl, test_time_period)
   
   
-  
-  
-  
-
   #TODO yes compare to shock iv too
   #ctr_df_x = est_constant_demand(full_aug_alldays_iv_data) #Just for comparison to shock-iv, not doing it now
   
@@ -111,6 +120,17 @@ correlational_estimate <- function(tseries_df,
   return(ctr_xy_naive)
 }
 
+#' Compare a baseline correlational measure to causal estimates using the split-door criterion.
+#'
+#' @param splitdoor_estimates_df 
+#' @param correlational_estimates_df 
+#' @param by_group 
+#' @param estimate_colname 
+#'
+#' @return If by_group is TRUE, a data.frame containing the mean estimates for each group using split-door and the baseline method. 
+#' @export
+#'
+#' @examples
 compare_splitdoor_correlational_estimate <-function(splitdoor_estimates_df, correlational_estimates_df, by_group=TRUE,
                                                     estimate_colname="causal_estimate"){
   tseries_with_valid_splitdoor = unique(splitdoor_estimates_df$treatment_tseries_id)#unique(filter(splitdoor_estimates_df, pass_splitdoor_criterion)$treatment_tseries_id)
