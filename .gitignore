@@ -33,4 +33,7 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 
-.Rhistory
+splitdoor/.Rhistory
+splitdoor/.RData
+splitdoor/*.Rproj
+splitdoor/.Rbuildignore
