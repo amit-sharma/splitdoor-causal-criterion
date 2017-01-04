@@ -111,19 +111,21 @@ correlational_estimate <- function(tseries_df,
   return(ctr_xy_naive)
 }
 
-compare_splitdoor_correlational_estimate <-function(splitdoor_estimates_df, correlational_estimates_df, by_group=TRUE){
-  tseries_with_valid_splitdoor = unique(splitdoor_estimates_df$treatment_tseries_id)
+compare_splitdoor_correlational_estimate <-function(splitdoor_estimates_df, correlational_estimates_df, by_group=TRUE,
+                                                    estimate_colname="causal_estimate"){
+  tseries_with_valid_splitdoor = unique(splitdoor_estimates_df$treatment_tseries_id)#unique(filter(splitdoor_estimates_df, pass_splitdoor_criterion)$treatment_tseries_id)
   ctr_corr_tseries_with_valid_splitdoor = filter(correlational_estimates_df, treatment_tseries_id %in% tseries_with_valid_splitdoor)
   if(by_group){
       # breaking up into product groups
-      ctr_corr_bygroup = breakup_est_by_productgroup(ctr_corr_tseries_with_valid_splitdoor, f_product_info)
-      ctr_splitdoor_by_group= breakup_est_by_productgroup(splitdoor_estimates_df, f_product_info)
+      ctr_corr_bygroup = breakup_est_by_treatment_group(ctr_corr_tseries_with_valid_splitdoor, estimate_colname)
+      ctr_splitdoor_by_group= breakup_est_by_treatment_group(splitdoor_estimates_df, estimate_colname)
       
-      compare_estimates = left_join(ctr_corr_bygroup, ctr_splitdoor_by_group_indep, by="product_group") %>%
+      compare_estimates = left_join(ctr_corr_bygroup, ctr_splitdoor_by_group, by="treatment_group") %>%
         mutate(diff = mean_estimate.y - mean_estimate.x,
                abs_diff = abs(diff))
       print(plot_ctr_compare(compare_estimates))
   } else {
+    #TODO write more logic here.
     ctr_corr_average = summarize(ctr_corr_tseries_with_valid_splitdoor, 
                                  mean_estimate=mean(agg_causal_estimate))
                                  

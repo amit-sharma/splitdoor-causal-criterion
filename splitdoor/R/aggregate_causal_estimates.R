@@ -13,6 +13,7 @@ aggregate_by_treatment_id<- function(pairwise_causal_estimate_df){
      # arrange_("outcome_tseries_id", "date") %>%
       summarize(
         #total_xvisits_inperiod = sum(total_treatment_val)/length(unique(outcome_tseries_id)),
+        treatment_group=first(treatment_group),
         agg_causal_estimate = sum(total_outcome_val)/first(total_treatment_val)
         #py1_x0 = sum(aux_outcome_val)/first(total_aux_outcome_val_inperiod)
       ) %>% 
@@ -21,6 +22,7 @@ aggregate_by_treatment_id<- function(pairwise_causal_estimate_df){
   ctr_iv_data_x = group_by(valid_pairwise_causal_estimate_df,
                            treatment_tseries_id) %>%
     summarize(
+      treatment_group = first(treatment_group),
       agg_causal_estimate= sum(total_outcome_val)/first(total_treatment_val)
       ) %>%
     ungroup()
@@ -29,14 +31,13 @@ aggregate_by_treatment_id<- function(pairwise_causal_estimate_df){
   return(ctr_iv_data_x)    
 }
 
-breakup_est_by_productgroup <- function(ctr_df, f_product_info, outcome_colname="py1_x1"){
-  ctr_df_with_cat = inner_join(ctr_df, f_product_info, by="treatment_tseries_id")
-  cond_ests = group_by(ctr_df_with_cat, 
-                       tseries_group) %>%
+breakup_est_by_treatment_group <- function(ctr_df, estimate_colname){
+  cond_ests = group_by(ctr_df, 
+                       treatment_group) %>%
     summarize_(
-      num_products = interp(~length(var), var=as.name(outcome_colname)),
-      mean_estimate = interp(~mean(var), var=as.name(outcome_colname)),
-      sd_estimate = interp(~sd(var), var=as.name(outcome_colname))
+      num_products = lazyeval::interp(~length(var), var=as.name(estimate_colname)),
+      mean_estimate = lazyeval::interp(~mean(var), var=as.name(estimate_colname)),
+      sd_estimate = lazyeval::interp(~sd(var), var=as.name(estimate_colname))
     ) 
   return(cond_ests)
 }

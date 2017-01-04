@@ -1,17 +1,17 @@
 plot_ctr_compare <- function(compare_estimates, filter_out_zeroyd=TRUE, yname="Click-through Estimate",ylim_max=0.2) {
   compare_estimates = compare_estimates %>%
     filter(!is.na(num_products.x), !is.na(num_products.y)) %>%
-    #filter(product_group %in% ordered_pgroup_vec)
+    #filter(treatment_group %in% ordered_pgroup_vec)
     filter(num_products.x >= 30, num_products.y >= 30) %>%
     arrange(-num_products.x) %>%
     slice(1:10)
   
-  #compare_estimates$product_group2 = factor(compare_estimates$product_group, levels=ordered_pgroup_vec)
-  compare_estimates$product_group2 = factor(compare_estimates$product_group, levels=compare_estimates$product_group)
-  #compare_estimates$product_group2 = factor(compare_estimates$product_group, 
-  #                                          levels=compare_estimates[order(-compare_estimates$num_products.x), "product_group"]$product_group)
-  melted_c_estimates = melt(compare_estimates, 
-                            id.vars=c("product_group2", "num_products.x", "num_products.y", 
+  #compare_estimates$treatment_group2 = factor(compare_estimates$treatment_group, levels=ordered_pgroup_vec)
+  compare_estimates$treatment_group2 = factor(compare_estimates$treatment_group, levels=compare_estimates$treatment_group)
+  #compare_estimates$treatment_group2 = factor(compare_estimates$treatment_group, 
+  #                                          levels=compare_estimates[order(-compare_estimates$num_products.x), "treatment_group"]$treatment_group)
+  melted_c_estimates = reshape2::melt(compare_estimates, 
+                            id.vars=c("treatment_group2", "num_products.x", "num_products.y", 
                                       "sd_estimate.x", "sd_estimate.y"), 
                             measure.vars=c("mean_estimate.y",
                                            "mean_estimate.x")
@@ -23,7 +23,7 @@ plot_ctr_compare <- function(compare_estimates, filter_out_zeroyd=TRUE, yname="C
   # if(filter_out_zeroyd){
   #    melted_c_estimates = filter(melted_c_estimates, variable!="mean_estimate.y")
   # }
-  p=ggplot(melted_c_estimates, aes(x=product_group2, y=value, group=variable, color=variable,linetype=variable)) + 
+  p=ggplot(melted_c_estimates, aes(x=treatment_group2, y=value, group=variable, color=variable,linetype=variable)) + 
     geom_line() + 
     geom_point(aes(size=num_products)) + 
     geom_errorbar(aes(ymin=value - se_error, ymax=value+se_error))+
@@ -39,7 +39,6 @@ plot_ctr_compare <- function(compare_estimates, filter_out_zeroyd=TRUE, yname="C
     xlab("") +ylab(yname)
   print(p)
   ggsave("causal_ctr_naive.pdf", width=6, height=4.5)
-  return(p)
 }
 
 show_only_date_labeller <- function(labels_df) {
