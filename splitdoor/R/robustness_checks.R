@@ -81,7 +81,6 @@ check_distribution_splitdoors_by_group <- function(causal_estimate_df,
   return(pgroup_plotdata2)
 }
 
-#"2013-12.0", ""B007P4VOWC", "B00B8A43CC"
 inspect_splitdoor_pairs <- function(treatment_outcome_pairs, tseries_df,
                                        n_treatment_outcome_pairs=NULL){
   if (!is.null(n_treatment_outcome_pairs)){
@@ -92,7 +91,6 @@ inspect_splitdoor_pairs <- function(treatment_outcome_pairs, tseries_df,
                                                outcome_tseries_id, independence_probability, pass_splitdoor_criterion)
   subset_data  = inner_join(rel_treatment_outcome_pairs, tseries_df,by=c("date_factor", "treatment_tseries_id", "outcome_tseries_id"))
 
-  #plot_df = plot_sample_xy_pairs(subset_data, do_sample=FALSE)
   plot_treatment_aux_outcome_timeseries(subset_data)
   return(subset_data
   )
