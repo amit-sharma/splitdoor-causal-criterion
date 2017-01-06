@@ -9,12 +9,6 @@ check_robustness_independence_threshold(tseries_df,
   do_plot = TRUE, ..)
 }
 \arguments{
-\item{tseries_df}{}
-
-\item{independence_thresholds}{}
-
-\item{do_plot}{}
-
 \item{..}{}
 }
 \value{

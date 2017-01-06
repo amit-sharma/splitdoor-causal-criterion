@@ -10,16 +10,6 @@ splitdoor_causal_estimate(tseries_df,
   num_discrete_levels = 4, independence_threshold = 0.05)
 }
 \arguments{
-\item{tseries_df}{}
-
-\item{fn_add_time_period_factor}{}
-
-\item{fn_independence_test}{}
-
-\item{test_time_period}{}
-
-\item{num_discrete_levels}{}
-
 \item{independence_threshold}{}
 }
 \value{

@@ -9,12 +9,6 @@ compare_splitdoor_correlational_estimate(splitdoor_estimates_df,
   estimate_colname = "causal_estimate")
 }
 \arguments{
-\item{splitdoor_estimates_df}{}
-
-\item{correlational_estimates_df}{}
-
-\item{by_group}{}
-
 \item{estimate_colname}{}
 }
 \value{
