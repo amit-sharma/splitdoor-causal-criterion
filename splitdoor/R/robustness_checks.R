@@ -31,7 +31,7 @@ check_robustness_independence_threshold <- function(tseries_df,
                                       )
 
         })
-  mean_estimates_by_thres = rbind(mean_estimates_df_list)
+  mean_estimates_by_thres = as.data.frame(rbind(mean_estimates_df_list))
   if(do_plot){
     p_est = plot_estimate_by_indep_threshold(mean_estimates_by_thres)
     p_num = plot_num_splitdoors_by_indep_threshold(mean_estimates_by_thres)

@@ -16,9 +16,8 @@
 #'
 #' @examples
 splitdoor_causal_estimate <- function(tseries_df,
-                                      fn_add_time_period_factor=assign_time_periods,
                                       fn_independence_test=fisher_independence_test,
-                                      test_time_period=15,
+                                      #test_time_period=15,
                                       num_discrete_levels=4,
                                       independence_threshold=0.05){
   tseries_tbl <- as.tbl(tseries_df)
@@ -26,7 +25,7 @@ splitdoor_causal_estimate <- function(tseries_df,
     distinct()
   #pgroup_distr_eligible = plot_pgroup_distribution(visits_data_unique_asin, f_product_info)
 
-  aug_tseries_tbl = fn_add_time_period_factor(tseries_tbl, test_time_period)
+  aug_tseries_tbl = tseries_tbl
 
 
   #TODO yes compare to shock iv too
