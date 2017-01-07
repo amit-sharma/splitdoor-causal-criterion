@@ -8,9 +8,8 @@
 #'
 #' @examples
 est_causal_effect <- function(tseries_tbl_with_indep_info, method="simple"){
-  #TODO add support for accessing valid_asin_targets_visits for ifelse statement in this function
   if (method=="simple"){
-    valid_tseries_tbl = filter(tseries_tbl_with_indep_info, pass_splitdoor_criterion)#!is.na(num_diff_yds))
+    valid_tseries_tbl = filter(tseries_tbl_with_indep_info, pass_splitdoor_criterion)
     invalid_tseries_tbl = filter(tseries_tbl_with_indep_info, !pass_splitdoor_criterion)
     ctr_valid_xy = compute_pairwise_causal_effect(valid_tseries_tbl)
     ctr_invalid_xy = compute_pairwise_causal_effect(invalid_tseries_tbl, is_valid_splitdoor=FALSE)

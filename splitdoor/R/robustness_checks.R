@@ -35,7 +35,6 @@ check_robustness_independence_threshold <- function(tseries_df,
   if(do_plot){
     p_est = plot_estimate_by_indep_threshold(mean_estimates_by_thres)
     p_num = plot_num_splitdoors_by_indep_threshold(mean_estimates_by_thres)
-    #TODO check if cowplot is installed and give a warning, include in suggests for package
     cowplot::plot_grid(p_num, p_est, labels=c("Split-door Estimates", "Number of Valid Split-door Pairs"), ncol = 2, nrow = 1)
   }
   return(mean_estimates_by_thres)
