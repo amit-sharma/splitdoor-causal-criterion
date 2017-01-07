@@ -21,9 +21,7 @@ agg_naive_estimate_df = aggregate_by_treatment_id(naive_estimate_df)
 
 # 2a. Estimating causal effect using the split-door criterion.
 causal_estimate_df = splitdoor_causal_estimate(tseries_df,
-                                             fn_add_time_period_factor=assign_time_periods,
                                              fn_independence_test=fisher_independence_test,
-                                             test_time_period=15,
                                              num_discrete_levels=4,
                                              independence_threshold=0.05)
 # 2b. Aggregating to each focal product.

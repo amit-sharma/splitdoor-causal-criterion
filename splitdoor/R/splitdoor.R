@@ -2,7 +2,7 @@
 
 
 
-#' Estimate causal effect of (multiple) treatment variables on outcome variables, given data for their timeseries.
+#' Estimate causal effect of multiple treatment variables on outcome variables, given data for their timeseries.
 #'
 #' @param tseries_df
 #' @param fn_add_time_period_factor
@@ -17,9 +17,9 @@
 #' @examples
 splitdoor_causal_estimate <- function(tseries_df,
                                       fn_independence_test=fisher_independence_test,
-                                      #test_time_period=15,
                                       num_discrete_levels=4,
-                                      independence_threshold=0.05){
+                                      independence_threshold=0.05,
+                                      ...){
   tseries_tbl <- as.tbl(tseries_df)
   distinct_ids = select(tseries_tbl,treatment_tseries_id) %>%
     distinct()
@@ -32,7 +32,8 @@ splitdoor_causal_estimate <- function(tseries_df,
 
   treatment_outcome_pairs_with_indep_info = fn_independence_test(aug_tseries_tbl,
                                     p_value=independence_threshold,
-                                    num_discrete_levels=num_discrete_levels)
+                                    num_discrete_levels=num_discrete_levels,
+                                    ...)
   tseries_tbl_with_indep_info = inner_join(aug_tseries_tbl, treatment_outcome_pairs_with_indep_info,
                                         by=c("date_factor", "treatment_tseries_id", "outcome_tseries_id"))
   print(paste(nrow(tseries_tbl_with_indep_info),nrow(aug_tseries_tbl)))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/assign_time_periods.R
 \name{assign_time_periods}
 \alias{assign_time_periods}
-\title{Title}
+\title{Add a date_factor column to input data.frame that groups consecutive dates.}
 \usage{
 assign_time_periods(tseries_tbl, time_period)
 }
@@ -10,5 +10,5 @@ assign_time_periods(tseries_tbl, time_period)
 \item{time_period}{}
 }
 \description{
-Title
+Not implemented.
 }

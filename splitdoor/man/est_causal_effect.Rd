@@ -7,8 +7,6 @@
 est_causal_effect(tseries_tbl_with_indep_info, method = "simple")
 }
 \arguments{
-\item{tseries_tbl_with_indep_info}{}
-
 \item{method}{}
 }
 \value{

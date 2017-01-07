@@ -1,4 +1,5 @@
-#' @import dplyr ggplot2
+#' @import dplyr
+#' @import ggplot2
 
 #' Compare correlational and split-door estimates for different treatment groups.
 #'
@@ -66,7 +67,7 @@ plot_estimate_by_indep_threshold <- function(mean_est_df, saveto_filename=NULL){
             aes(x=independence_threshold, y=mean_causal_estimate)) +
     geom_line() + geom_point()+
     geom_vline(xintercept=0.95, linetype=2,alpha=0.4)+
-    geom_errorbar(aes(ymin=V3-se_causal_estimate, ymax=V3+se_causal_estimate)) +
+    geom_errorbar(aes(ymin=mean_causal_estimate-se_causal_estimate, ymax=mean_causal_estimate+se_causal_estimate)) +
     ylim(0, 0.04) +
     ylab("Causal click-through estimate") + xlab("Likelihood of independence") +
     theme_bw() +

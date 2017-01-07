@@ -7,12 +7,10 @@
 compute_pairwise_causal_effect(valid_tseries_tbl, is_valid_splitdoor = TRUE)
 }
 \arguments{
-\item{valid_tseries_tbl}{}
-
 \item{is_valid_splitdoor}{}
 }
 \value{
-A data.frame containing the causal estimate for each (treatment, outcome) pair. 
+A data.frame containing the causal estimate for each (treatment, outcome) pair.
 Causal estimate is NA if (treatment, outcome, time-period) triplet does not satisfy the split-door criterion.
 }
 \description{

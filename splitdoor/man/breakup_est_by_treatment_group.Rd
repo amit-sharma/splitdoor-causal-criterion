@@ -7,8 +7,6 @@
 breakup_est_by_treatment_group(ctr_df, estimate_colname)
 }
 \arguments{
-\item{ctr_df}{}
-
 \item{estimate_colname}{}
 }
 \value{
