@@ -2,7 +2,7 @@ library(splitdoor)
 library(dplyr)
 
 # A data.frame in the following format.
-load("../../binary-iv/Rscripts/splitdoor/recommender.log")
+load("recommender.log")
 
 # Optional: Sampling for faster run.
 tseries_df = recommender.log  %>%

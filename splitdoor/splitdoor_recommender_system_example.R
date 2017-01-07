@@ -7,7 +7,7 @@ library(splitdoor)
 library(dplyr)
 
 ## Loading data from a recommender system's logs
-load("../../binary-iv/Rscripts/splitdoor/recommender.log")
+load("recommender.log")
 tseries_df = recommender.log
 
 ## Computing estimates
