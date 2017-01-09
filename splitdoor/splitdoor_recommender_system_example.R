@@ -3,12 +3,13 @@
 # natural experiments. Amit Sharma, Jake Hofman, Duncan Watts.
 # https://arxiv.org/abs/1611.09414
 
+# WARN: Note results will be different because the dataset provided is a subset of the full dataset.
 library(splitdoor)
 library(dplyr)
 
 ## Loading data from a recommender system's logs
-load("recommender.log")
-tseries_df = recommender.log
+load("recommender.log.sample")
+tseries_df = recommender.log.sample
 
 ## Computing estimates
 

@@ -23,7 +23,7 @@ check_robustness_independence_threshold <- function(tseries_df,
                     ...);
           ctr_x = aggregate_by_treatment_id(ctr_xy)
           average_estimates = summarize(ctr_x,
-                                        independence_threshold=indep_thres,
+                                        independence_threshold=1-indep_thres, # for plotting
                                         mean_causal_estimate=mean(agg_causal_estimate),
                                         sd_causal_estimate=sd(agg_causal_estimate),
                                         se_causal_estimate=sd(agg_causal_estimate)/sqrt(n()),
@@ -35,7 +35,7 @@ check_robustness_independence_threshold <- function(tseries_df,
   if(do_plot){
     p_est = plot_estimate_by_indep_threshold(mean_estimates_by_thres)
     p_num = plot_num_splitdoors_by_indep_threshold(mean_estimates_by_thres)
-    cowplot::plot_grid(p_num, p_est, labels=c("Split-door Estimates", "Number of Valid Split-door Pairs"), ncol = 2, nrow = 1)
+    print(cowplot::plot_grid(p_num, p_est, labels=c("Split-door Estimates", "Number of Valid Split-door Pairs"), ncol = 2, nrow = 1))
   }
   return(mean_estimates_by_thres)
 

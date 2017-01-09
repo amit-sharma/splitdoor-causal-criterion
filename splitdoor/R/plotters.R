@@ -69,6 +69,7 @@ plot_estimate_by_indep_threshold <- function(mean_est_df, saveto_filename=NULL){
     geom_vline(xintercept=0.95, linetype=2,alpha=0.4)+
     geom_errorbar(aes(ymin=mean_causal_estimate-se_causal_estimate, ymax=mean_causal_estimate+se_causal_estimate)) +
     ylim(0, 0.04) +
+    xlim(0.75, 1) +
     ylab("Causal click-through estimate") + xlab("Likelihood of independence") +
     theme_bw() +
     theme(axis.text = element_text(size=16),
@@ -89,12 +90,14 @@ plot_estimate_by_indep_threshold <- function(mean_est_df, saveto_filename=NULL){
 #'
 #' @examples
 plot_num_splitdoors_by_indep_threshold <- function(mean_est_df, saveto_filename=NULL) {
+  max_num_nat_experiments = max(mean_est_df$num_unique_treatments)*1.1
   p1=ggplot(mean_est_df,
             aes(x=independence_threshold, y=num_unique_treatments)) +
     geom_line() + geom_point()+
     geom_vline(xintercept=0.95, linetype=2,alpha=0.4)+
     ylab("Number of natural experiments") + xlab("Likelihood of independence") +
-    ylim(0, 35000)+
+    ylim(0, max_num_nat_experiments)+
+    xlim(0.75, 1) +
     theme_bw() +
     theme(axis.text = element_text(size=16),
           axis.title = element_text(size=16, face="bold"))

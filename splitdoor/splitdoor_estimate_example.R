@@ -2,11 +2,11 @@ library(splitdoor)
 library(dplyr)
 
 # A data.frame in the following format.
-load("recommender.log")
+load("recommender.log.sample")
 
 # Optional: Sampling for faster run.
-tseries_df = recommender.log  %>%
-  slice(1:30000)
+tseries_df = recommender.log.sample  %>%
+  slice(1:15000)
 
 # Optional: Splitting data based on a user-specified time-interval.
 tseries_df = assign_time_periods(tseries_df, time_period = 15)
