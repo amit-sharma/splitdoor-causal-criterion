@@ -1,3 +1,7 @@
+# Example to illustrate use of the splitdoor R package
+
+# Latest version of this code available at: https://www.github.com/amit-sharma/splitdoor-causal-criterion
+
 library(splitdoor)
 library(dplyr)
 

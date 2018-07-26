@@ -1,8 +1,11 @@
 #' @import dplyr
 
 
-#' Check the variation of causal estimate as the threshold for independence used by split-door criterion is varied.
-#'
+#' Check robustness to independence threshold.
+#' 
+#' Check the variation of causal estimate as the 
+#' threshold for independence used by split-door criterion is varied.
+#' 
 #' @param tseries_df
 #' @param independence_thresholds
 #' @param do_plot
@@ -29,13 +32,17 @@ check_robustness_independence_threshold <- function(tseries_df,
                                         se_causal_estimate=sd(agg_causal_estimate)/sqrt(n()),
                                         num_unique_treatments=n()
                                       )
+          num_splitdoor_instances = summarize(ctr_xy,
+                                              num_splitdoor_instances=sum(!is.na(causal_estimate)))
+          average_estimates = cbind(average_estimates, num_splitdoor_instances)
+          print(average_estimates)
 
         })
   mean_estimates_by_thres = do.call(rbind.data.frame, mean_estimates_df_list)
   if(do_plot){
     p_est = plot_estimate_by_indep_threshold(mean_estimates_by_thres)
     p_num = plot_num_splitdoors_by_indep_threshold(mean_estimates_by_thres)
-    print(cowplot::plot_grid(p_num, p_est, labels=c("Split-door Estimates", "Number of Valid Split-door Pairs"), ncol = 2, nrow = 1))
+    print(cowplot::plot_grid(p_num, p_est, labels=c("(a)", "(b)"), ncol = 2, nrow = 1))
   }
   return(mean_estimates_by_thres)
 

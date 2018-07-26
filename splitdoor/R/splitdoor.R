@@ -3,6 +3,8 @@
 
 
 #' Estimate causal effect of multiple treatment variables on outcome variables, given data for their timeseries.
+#' 
+#' Estimate causal effect.
 #'
 #' @param tseries_df
 #' @param fn_add_time_period_factor
@@ -16,7 +18,7 @@
 #'
 #' @examples
 splitdoor_causal_estimate <- function(tseries_df,
-                                      fn_independence_test=fisher_independence_test,
+                                      fn_independence_test=dcor_independence_test,
                                       num_discrete_levels=4,
                                       independence_threshold=0.05,
                                       ...){
@@ -44,8 +46,9 @@ splitdoor_causal_estimate <- function(tseries_df,
   return(ctr_xy_indep)
 }
 
-#' Compute correlational estimate based on all available data.
-#'
+#' Compute correlational estimate based on all available data. 
+#' Provided as a baseline for comparison. Do not use for causal analysis. 
+#' 
 #' @param tseries_df
 #' @param test_time_period
 #' @param fn_add_time_period_factor
@@ -59,7 +62,8 @@ correlational_estimate <- function(tseries_df,
                                    fn_add_time_period_factor=assign_time_periods){
 
   tseries_tbl <- as.tbl(tseries_df)
-
+  
+  # Check if the data needs to be separated into smaller time periods for analysis 
   if(is.null(test_time_period)){
     ctr_xy_naive= est_naive_nodatefactors(tseries_tbl)
   } else {

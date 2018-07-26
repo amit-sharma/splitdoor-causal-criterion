@@ -1,6 +1,7 @@
+
 #' Add a date_factor column to input data.frame that groups consecutive dates.
 #'
-#' Not implemented.
+#' To be implemented. For now, provide a data frame that already has a date_factor column.
 #' @param tseries_tbl
 #' @param time_period
 #'

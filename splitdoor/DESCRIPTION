@@ -4,12 +4,13 @@ Version: 0.0.0.9000
 Authors@R: person("Amit", "Sharma", email = "me@amitsharma.in", role = c("aut", "cre"))
 Description: Split-door criterion provides a method for identifying causal effect between two time-series. This R package provides functions for calculating causal effects from observational data using the split-door criterion.
 For more details, see: Split-door criterion for causal identification: Automatic search for natural experiments. Amit Sharma, Jake Hofman, Duncan Watts.
-https://arxiv.org/abs/1611.09414
+https: //arxiv.org/abs/1611.09414
 Depends: R (>= 3.3.2)
 Imports: dplyr,
          ggplot2,
-         cowplot
+         cowplot,
+         energy
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1

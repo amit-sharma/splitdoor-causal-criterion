@@ -2,21 +2,17 @@
 % Please edit documentation in R/independence_test.R
 \name{fisher_independence_test}
 \alias{fisher_independence_test}
-\title{Test for independence between pairs of discrete time-series.}
+\title{Fisher's test for independence between pairs of discrete time-series.}
 \usage{
 fisher_independence_test(tseries_tbl, p_value, num_discrete_levels)
 }
 \arguments{
-\item{tseries_tbl}{}
-
-\item{p_value}{}
-
 \item{num_discrete_levels}{}
 }
 \value{
-A data.frame containing test results for each (treatment, outcome) pair. 
+A data.frame containing test results for each (treatment, outcome) pair.
 Probability of independence of the two time-series is provided along with Pass/Fail result of the test based on the user-provided independence_threshold.
 }
 \description{
-Test for independence between pairs of discrete time-series.
+Uses fisher's test for discrete variables.
 }

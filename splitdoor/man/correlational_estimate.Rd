@@ -2,7 +2,8 @@
 % Please edit documentation in R/splitdoor.R
 \name{correlational_estimate}
 \alias{correlational_estimate}
-\title{Compute correlational estimate based on all available data.}
+\title{Compute correlational estimate based on all available data. 
+Provided as a baseline for comparison. Do not use for causal analysis.}
 \usage{
 correlational_estimate(tseries_df, test_time_period = NULL,
   fn_add_time_period_factor = assign_time_periods)
@@ -11,5 +12,6 @@ correlational_estimate(tseries_df, test_time_period = NULL,
 \item{fn_add_time_period_factor}{}
 }
 \description{
-Compute correlational estimate based on all available data.
+Compute correlational estimate based on all available data. 
+Provided as a baseline for comparison. Do not use for causal analysis.
 }

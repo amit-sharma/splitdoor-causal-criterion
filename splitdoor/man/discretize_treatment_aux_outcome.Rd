@@ -7,8 +7,6 @@
 discretize_treatment_aux_outcome(tseries_tbl, num_discrete_levels)
 }
 \arguments{
-\item{tseries_tbl}{}
-
 \item{num_discrete_levels}{}
 }
 \value{
