@@ -76,7 +76,6 @@ discretize_treatment_aux_outcome <-function(tseries_tbl, num_discrete_levels){
   by_period_asin = group_by(tseries_tbl, date_factor, treatment_tseries_id,outcome_tseries_id)
   aug_exp_iv_data = by_period_asin %>%
     mutate(
-           #discrete_yd = round(yd_multiplier*aux_outcome_val/max(treatment_val))/yd_multiplier,
            max_aux_outcome_val = max(aux_outcome_val),
            discrete_yd = floor((aux_outcome_val/max(aux_outcome_val))*num_discrete_levels),
            discrete_x = floor((treatment_val/max(treatment_val))*num_discrete_levels),
@@ -206,7 +205,7 @@ x_yd_randomize_test <- function(x_vec, y_vec, asin_id, cor_metric,
 #'
 #' @examples
 gen_cor_samples <- function(x_vec, y_vec,cor_metric, x_vals, names_xvals){
-  sim_x_values=sample(names_xvals, length(x_vec), prob=x_vals) #gen_sim_values(x_vec, sim="preserve_sum")#gen_sim_values(x_vec)#gen_sim_values(x_vec) #TODO probably need only one
+  sim_x_values=sample(names_xvals, length(x_vec), prob=x_vals) 
   sim_y_values = y_vec
   if(cor_metric=="compare_cor"){
     cor_value=abs(cor(sim_x_values, sim_y_values)) 

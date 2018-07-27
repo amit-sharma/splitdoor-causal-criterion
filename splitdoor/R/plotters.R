@@ -70,7 +70,7 @@ plot_estimate_by_indep_threshold <- function(mean_est_df, saveto_filename=NULL){
     geom_line() + geom_point()+
     geom_vline(xintercept=0.95, linetype=2,alpha=0.4)+
     geom_errorbar(aes(ymin=mean_causal_estimate-se_causal_estimate, ymax=mean_causal_estimate+se_causal_estimate)) +
-    ylim(0, 0.04) +
+    ylim(0, 0.05) +
     xlim(0.75, 1) +
     ylab("Causal click-through estimate") + xlab("p-value") +
     theme_bw() +
