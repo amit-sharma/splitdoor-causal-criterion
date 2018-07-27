@@ -23,20 +23,14 @@ load("recommender.log.sample")
 ## Data format
 # date_factor: 15-day time periods
 # date
-# treatment_tseries_id: Focal product id (anonymized)
-# treatment_group: Product category
-# outcome_tseries_id: Recommended product id (anonymized)
-# treatment_val: Visits to focal product (rescaled)
-# outcome_val: Referral visits to recommended product
-# aux_outcome_val: Direct visits to recommended product
-# Optional: Sampling for faster run.
+# treatment_tseries_id: ID for each treatment
+# treatment_group: Category of treatment
+# outcome_tseries_id: ID of the corresponding outcome
+# treatment_val: Time-series for values of the treatment
+# outcome_val: Time-series for "Referred" part of the outcome
+# aux_outcome_val: Time-series for "Direct" part of the outcome
 
-tseries_df = recommender.log.sample  %>%
-  slice(1:10000)  # optional, to reduce running time
-
-# Optional: Splitting data based on a user-specified time-interval.
-# Not implemented.
-tseries_df = assign_time_periods(tseries_df, time_period = 15)
+tseries_df = recommender.log.sample
 
 # 1a. Computing a naive estimate first using correlations.
 naive_estimate_df = correlational_estimate(tseries_df,
@@ -59,11 +53,9 @@ agg_causal_estimate_df = aggregate_by_treatment_id(causal_estimate_df)
 compare_splitdoor_correlational_estimate(agg_causal_estimate_df, agg_naive_estimate_df,
                                          by_group=TRUE, estimate_colname="agg_causal_estimate",
                                          min_group_frequency = 10)
-``` 
+```
 
-The package also includes methods for checking robustness of the obtained
-estimate. 
-
+The package also includes methods for checking robustness of the obtained estimate.
 ```r
 # 3b. Visualizing valid split-door <treatment, outcome> pairs
 inspect_splitdoor_pairs(filter(causal_estimate_df,pass_splitdoor_criterion),

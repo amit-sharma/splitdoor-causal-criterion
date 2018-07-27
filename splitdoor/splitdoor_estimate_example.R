@@ -16,16 +16,18 @@ load("recommender.log.sample")
 ## Data format
 # date_factor: 15-day time periods
 # date
-# treatment_tseries_id: Focal product id (anonymized)
-# treatment_group: Product category
-# outcome_tseries_id: Recommended product id (anonymized)
-# treatment_val: Visits to focal product (rescaled)
-# outcome_val: Referral visits to recommended product
-# aux_outcome_val: Direct visits to recommended product
-# Optional: Sampling for faster run.
+# treatment_tseries_id: ID for each treatment
+# treatment_group: Category of treatment
+# outcome_tseries_id: ID of the corresponding outcome
+# treatment_val: Time-series for values of the treatment
+# outcome_val: Time-series for "Referred" part of the outcome
+# aux_outcome_val: Time-series for "Direct" part of the outcome
 
-tseries_df = recommender.log.sample  %>%
-  slice(1:15000)  # optional, to reduce running time
+# Optional: Sampling 100 treatments to reduce run-time.
+top_categories = count(recommender.log.sample, treatment_group) %>% arrange(-n) %>% slice(1:2)
+sample_treatment_ids = filter(recommender.log.sample, treatment_group %in% top_categories$treatment_group) %>%
+  distinct(treatment_tseries_id) %>% sample_n(100)
+tseries_df = filter(recommender.log.sample, treatment_tseries_id %in% sample_treatment_ids$treatment_tseries_id) 
 
 # Optional: Splitting data based on a user-specified time-interval.
 # Not implemented.

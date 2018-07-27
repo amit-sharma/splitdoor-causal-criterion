@@ -125,6 +125,7 @@ plot_pgroup_distribution <- function(pgroup_plotdata){
 
   p_full = p +geom_line() + geom_point(aes(shape=dataset),size=3) +
     xlab("") + ylab(ylabel) +
+    ylim(0,1)+
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1,size=16),
           axis.title.y = element_text(size=16),
