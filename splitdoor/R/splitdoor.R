@@ -86,7 +86,8 @@ correlational_estimate <- function(tseries_df,
 #'
 #' @examples
 compare_splitdoor_correlational_estimate <-function(splitdoor_estimates_df, correlational_estimates_df, by_group=TRUE,
-                                                    estimate_colname="causal_estimate"){
+                                                    estimate_colname="causal_estimate",
+                                                    min_group_frequency=30){
   tseries_with_valid_splitdoor = unique(splitdoor_estimates_df$treatment_tseries_id)#unique(filter(splitdoor_estimates_df, pass_splitdoor_criterion)$treatment_tseries_id)
   ctr_corr_tseries_with_valid_splitdoor = filter(correlational_estimates_df, treatment_tseries_id %in% tseries_with_valid_splitdoor)
   if(by_group){
@@ -97,7 +98,7 @@ compare_splitdoor_correlational_estimate <-function(splitdoor_estimates_df, corr
       compare_estimates = left_join(ctr_corr_bygroup, ctr_splitdoor_by_group, by="treatment_group") %>%
         mutate(diff = mean_estimate.y - mean_estimate.x,
                abs_diff = abs(diff))
-      print(plot_ctr_compare(compare_estimates))
+      print(plot_ctr_compare(compare_estimates, min_group_frequency))
   } else {
     #TODO.
     ctr_corr_average = summarize(ctr_corr_tseries_with_valid_splitdoor,

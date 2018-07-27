@@ -12,10 +12,12 @@
 #' @export
 #'
 #' @examples
-plot_ctr_compare <- function(compare_estimates, filter_out_zeroyd=TRUE, yname="Click-through Estimate",ylim_max=0.2) {
+plot_ctr_compare <- function(compare_estimates, 
+                             min_group_frequency, filter_out_zeroyd=TRUE, 
+                             yname="Click-through Estimate",ylim_max=0.2) {
   compare_estimates = compare_estimates %>%
     filter(!is.na(num_products.x), !is.na(num_products.y)) %>%
-    filter(num_products.x >= 30, num_products.y >= 30) %>%
+    filter(num_products.x >= min_group_frequency, num_products.y >= min_group_frequency) %>%
     arrange(-num_products.x) %>%
     slice(1:10)
 
@@ -129,7 +131,6 @@ plot_pgroup_distribution <- function(pgroup_plotdata){
           legend.title=element_blank(),
           legend.position=c(0.74, 0.8),
           legend.key.width=unit(1.6, "cm"))
-  #p_full2 = p_full + guides(shape = guide_legend(override.aes = list(shape=1)))
   p_full2=p_full
   print(p_full2)
   ggsave(filename=filename, plot=p_full2, width=6, height=5)

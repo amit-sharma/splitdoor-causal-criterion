@@ -2,7 +2,8 @@ library(energy)
 
 #' Fisher's test for independence between pairs of discrete time-series.
 #' 
-#' Uses fisher's test for discrete variables. 
+#' Use fisher's test for discrete variables.
+#' If num_discrete_levels is provided, this function also discretizes the data before applying Fisher's test. 
 #' 
 #' @param tseries_tbl
 #' @param p_value
@@ -14,7 +15,9 @@ library(energy)
 #'
 #' @examples
 fisher_independence_test <- function(tseries_tbl, p_value, num_discrete_levels) {
-  discrete_tseries_tbl = discretize_treatment_aux_outcome(tseries_tbl, num_discrete_levels)
+  if (!is.na(num_discrete_levels) {
+    discrete_tseries_tbl = discretize_treatment_aux_outcome(tseries_tbl, num_discrete_levels)
+  }
   treatment_outcome_pairs = discrete_tseries_tbl %>%
   group_by(date_factor, treatment_tseries_id, outcome_tseries_id) %>%
   mutate(
@@ -90,7 +93,7 @@ discretize_treatment_aux_outcome <-function(tseries_tbl, num_discrete_levels){
  return(aug_alldays_iv_data)
 }
 
-#' Randomization Test for independence between pairs of time-series.
+#' Randomization Test for independence between pairs of time-series using distance correlation.
 #' 
 #' Uses randomization test based on distance correlation. 
 #' 
@@ -137,9 +140,9 @@ dcor_independence_test <- function(tseries_tbl, p_value, num_discrete_levels=NA)
   return(summarized_asin_targets)
 }
 
-#' Randomization Test for independence between pairs of time-series.
+#' General Randomization Test for independence between pairs of vectors.
 #' 
-#' Uses randomization test based on distance correlation. 
+#' Uses randomization test based on distance correlation (preferred) or simple correlation. 
 #' 
 #' @param tseries_tbl
 #' @param p_value
@@ -190,9 +193,9 @@ x_yd_randomize_test <- function(x_vec, y_vec, asin_id, cor_metric,
   
 }
 
-#' Randomization Test for independence between pairs of time-series.
+#' Simulate two vectors and compute correlation between them.
 #' 
-#' Uses randomization test based on distance correlation. 
+#' A part of the randomization test procedure. 
 #' 
 #' @param tseries_tbl
 #' @param p_value
