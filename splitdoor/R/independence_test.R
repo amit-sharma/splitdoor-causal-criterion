@@ -1,4 +1,5 @@
-library(energy) 
+#' @import energy
+NULL
 
 #' Fisher's test for independence between pairs of discrete time-series.
 #' 
