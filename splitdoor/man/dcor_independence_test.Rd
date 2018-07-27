@@ -2,9 +2,9 @@
 % Please edit documentation in R/independence_test.R
 \name{dcor_independence_test}
 \alias{dcor_independence_test}
-\title{Randomization Test for independence between pairs of time-series.}
+\title{Randomization Test for independence between pairs of time-series using distance correlation.}
 \usage{
-dcor_independence_test(tseries_tbl, p_value)
+dcor_independence_test(tseries_tbl, p_value, num_discrete_levels = NA)
 }
 \arguments{
 \item{p_value}{}

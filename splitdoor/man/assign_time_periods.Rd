@@ -10,5 +10,5 @@ assign_time_periods(tseries_tbl, time_period)
 \item{time_period}{}
 }
 \description{
-To be implemented. For now, provide a data frame that already has a date_factor column.
+To be implemented. For now, the code expects a data frame that already has a date_factor column.
 }

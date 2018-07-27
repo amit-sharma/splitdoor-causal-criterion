@@ -14,5 +14,6 @@ A data.frame containing test results for each (treatment, outcome) pair.
 Probability of independence of the two time-series is provided along with Pass/Fail result of the test based on the user-provided independence_threshold.
 }
 \description{
-Uses fisher's test for discrete variables.
+Use fisher's test for discrete variables.
+If num_discrete_levels is provided, this function also discretizes the data before applying Fisher's test.
 }

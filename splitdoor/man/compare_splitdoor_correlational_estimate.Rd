@@ -6,7 +6,7 @@
 \usage{
 compare_splitdoor_correlational_estimate(splitdoor_estimates_df,
   correlational_estimates_df, by_group = TRUE,
-  estimate_colname = "causal_estimate")
+  estimate_colname = "causal_estimate", min_group_frequency = 30)
 }
 \arguments{
 \item{estimate_colname}{}

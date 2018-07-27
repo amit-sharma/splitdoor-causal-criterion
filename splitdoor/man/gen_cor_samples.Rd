@@ -2,9 +2,9 @@
 % Please edit documentation in R/independence_test.R
 \name{gen_cor_samples}
 \alias{gen_cor_samples}
-\title{Randomization Test for independence between pairs of time-series.}
+\title{Simulate two vectors and compute correlation between them.}
 \usage{
-gen_cor_samples(x_vec, y_vec, cor_metric)
+gen_cor_samples(x_vec, y_vec, cor_metric, x_vals, names_xvals)
 }
 \arguments{
 \item{p_value}{}
@@ -14,5 +14,5 @@ A data.frame containing test results for each (treatment, outcome) pair.
 Probability of independence of the two time-series is provided along with Pass/Fail result of the test based on the user-provided independence_threshold.
 }
 \description{
-Uses randomization test based on distance correlation.
+A part of the randomization test procedure.
 }

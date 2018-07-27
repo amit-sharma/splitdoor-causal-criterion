@@ -15,6 +15,7 @@ install_packages("devtools")
 devtools::install_github("amit-sharma/splitdoor-causal-criterion")
 ```
 
+## Quick-start
 For a quick introduction to applying the split-door criterion, check out
 'splitdoor_estimate_example.R'. 
 

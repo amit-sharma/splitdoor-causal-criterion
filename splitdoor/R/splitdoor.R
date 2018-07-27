@@ -1,10 +1,7 @@
 #' @import dplyr
-
-
+NULL
 
 #' Estimate causal effect of multiple treatment variables on outcome variables, given data for their timeseries.
-#' 
-#' Estimate causal effect.
 #'
 #' @param tseries_df
 #' @param fn_add_time_period_factor

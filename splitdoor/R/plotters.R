@@ -1,5 +1,5 @@
-#' @import dplyr
 #' @import ggplot2
+NULL
 
 #' Compare correlational and split-door estimates for different treatment groups.
 #'

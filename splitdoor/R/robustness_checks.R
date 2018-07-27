@@ -1,5 +1,5 @@
 #' @import dplyr
-
+NULL
 
 #' Check robustness to independence threshold.
 #' 

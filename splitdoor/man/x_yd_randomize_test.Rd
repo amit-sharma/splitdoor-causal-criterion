@@ -2,9 +2,9 @@
 % Please edit documentation in R/independence_test.R
 \name{x_yd_randomize_test}
 \alias{x_yd_randomize_test}
-\title{Randomization Test for independence between pairs of time-series.}
+\title{General Randomization Test for independence between pairs of vectors.}
 \usage{
-x_yd_randomize_test(x_vec, y_vec, asin_id, cor_metric,
+x_yd_randomize_test(x_vec, y_vec, asin_id, cor_metric, x_vals, names_xvals,
   num_data_simulations = 1000, DO_ECDF = F, DOPRINT = F)
 }
 \arguments{
@@ -15,5 +15,5 @@ A data.frame containing test results for each (treatment, outcome) pair.
 Probability of independence of the two time-series is provided along with Pass/Fail result of the test based on the user-provided independence_threshold.
 }
 \description{
-Uses randomization test based on distance correlation.
+Uses randomization test based on distance correlation (preferred) or simple correlation.
 }
