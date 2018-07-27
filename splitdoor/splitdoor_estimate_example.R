@@ -25,7 +25,7 @@ load("recommender.log.sample")
 # Optional: Sampling for faster run.
 
 tseries_df = recommender.log.sample  %>%
-  slice(1:10000)  # optional, to reduce running time
+  slice(1:15000)  # optional, to reduce running time
 
 # Optional: Splitting data based on a user-specified time-interval.
 # Not implemented.
