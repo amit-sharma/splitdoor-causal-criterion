@@ -15,7 +15,7 @@ library(energy)
 #'
 #' @examples
 fisher_independence_test <- function(tseries_tbl, p_value, num_discrete_levels) {
-  if (!is.na(num_discrete_levels) {
+  if (!is.na(num_discrete_levels)) {
     discrete_tseries_tbl = discretize_treatment_aux_outcome(tseries_tbl, num_discrete_levels)
   }
   treatment_outcome_pairs = discrete_tseries_tbl %>%

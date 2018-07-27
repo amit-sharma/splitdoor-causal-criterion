@@ -25,7 +25,7 @@ load("recommender.log.sample")
 # Optional: Sampling for faster run.
 
 tseries_df = recommender.log.sample  %>%
-  slice(1:4500)  # optional, to reduce running time
+  slice(1:10000)  # optional, to reduce running time
 
 # Optional: Splitting data based on a user-specified time-interval.
 # Not implemented.
@@ -50,7 +50,8 @@ agg_causal_estimate_df = aggregate_by_treatment_id(causal_estimate_df)
 # 3. Analysis of the obtained estimates
 # 3a. Comparing correlational and split-door estimates
 compare_splitdoor_correlational_estimate(agg_causal_estimate_df, agg_naive_estimate_df,
-                                         by_group=TRUE, estimate_colname="agg_causal_estimate")
+                                         by_group=TRUE, estimate_colname="agg_causal_estimate",
+                                         min_group_frequency = 10)
 
 # 3b. Visualizing valid split-door <treatment, outcome> pairs
 inspect_splitdoor_pairs(filter(causal_estimate_df,pass_splitdoor_criterion),
@@ -60,7 +61,7 @@ inspect_splitdoor_pairs(filter(causal_estimate_df,pass_splitdoor_criterion),
 #3c. Checking robustness of the split-door estimate to
 #    change in threshold for independence test.
 check_robustness_independence_threshold(tseries_df,
-                                        independence_thresholds = c(0.05,0.01,0.001))
+                                        independence_thresholds = c(0.05,0.01))
 
 
 # 3d. Checking whether distribution of sample treatments selected by the
