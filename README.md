@@ -12,7 +12,7 @@ outcomes. Amit Sharma, Jake Hofman, Duncan Watts.
 Use devtools to install the package. 
 ```r
 install_packages("devtools")
-devtools::install_github("amit-sharma/splitdoor-causal-criterion")
+devtools::install_github(repo = "amit-sharma/splitdoor-causal-criterion/splitdoor")
 ```
 
 ## Quick-start
